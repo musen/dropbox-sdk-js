@@ -11,6 +11,7 @@ require('./object-assign-polyfill');
 DropboxApi = function (options) {
   this.accessToken = options && options.accessToken || '';
   this.clientId = options && options.clientId || '';
+  this.selectUser = options && options.selectUser || '';
 };
 
 DropboxApi.prototype.setAccessToken = function (accessToken) {
@@ -51,7 +52,7 @@ DropboxApi.prototype.getAuthenticationUrl = function (redirectUri, state) {
 
 DropboxApi.prototype.request = function (path, body, host, style) {
   if (style === REQUEST_CONSTANTS.RPC) {
-    return this.rpcRequest(path, body, this.getAccessToken());
+    return this.rpcRequest(path, body, this.getAccessToken(), this.selectUser);
   } else if (style === REQUEST_CONSTANTS.DOWNLOAD) {
     throw new Error('Download endpoints are not yet implemented');
   } else if (style === REQUEST_CONSTANTS.UPLOAD) {
