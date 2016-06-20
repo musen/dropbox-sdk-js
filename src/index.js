@@ -1,5 +1,5 @@
 var Dropbox = require('./dropbox');
-var DropboxTeam = require('./team/');
+var DropboxTeam = require('./dropbox/team/');
 
 module.exports = {
  Standard: Dropbox,
